@@ -8,10 +8,8 @@ const request = Promise.promisify(require('request'), {
 });
 
 function parseResponse(response, body) {
-    try {
+    if (typeof body === 'string') {
         body = JSON.parse(body);
-    } catch (e) {
-        console.error(`THE SERVER DOES NOT RETURN A VALID JSON! => ERROR :: ${e.message}`);
     }
 
     return Promise.resolve(body);
